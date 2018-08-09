@@ -1,0 +1,6 @@
+{
+  "/api/*": {
+    "target": "https://training.devplant.ro",
+    "changeOrigin": true
+  }
+}

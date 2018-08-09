@@ -1,0 +1,16 @@
+<div>
+
+  <h3>Login</h3>
+
+  <label for="username">Username:</label>
+  <input id="username" [(ngModel)]="username">
+  <br>
+  <label for="password">Password:</label>
+  <input id="password" type="password" [(ngModel)]="password">
+
+  <p class="error" *ngIf="error">Error: Invalid Login!</p>
+
+  <p>No Account Yet? <a routerLink="/register">register</a> one!</p>
+
+  <button (click)="login()" class="btn btn-primary">LOGIN</button>
+</div>

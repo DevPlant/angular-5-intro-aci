@@ -1,0 +1,41 @@
+<div>
+
+  <h3>Add new User here!</h3>
+  Username:
+  <input [(ngModel)]="newUsername">
+  <br>
+  Password:
+  <input type="password" [(ngModel)]="newPassword">
+  <br>
+  <button (click)="saveUser()">Save User</button>
+
+</div>
+
+<br><br><br>
+
+<div *ngFor="let user of users; let i = index">
+
+    <div *ngIf="!user.edit">
+      <p>
+        Username: {{user.username}}
+      </p>
+      <p>
+        Password: {{user.password}}
+        <button (click)="deleteByIndex(i)">Delete</button>
+        <button (click)="user.edit = true">Edit</button>
+      </p>
+    </div>
+
+    <div *ngIf="user.edit === true">
+      <h3>Edit: </h3>
+      Username:
+      <input [(ngModel)]="user.username">
+      <br>
+      Password:
+      <input type="password" [(ngModel)]="user.password">
+      <br>
+      <button (click)="user.edit = false">Done</button>
+    </div>
+
+  <hr>
+</div>

@@ -1,0 +1,25 @@
+.reply-container {
+  padding-left: 20px;
+  border: 1px solid gainsboro;
+  .reply {
+    padding: 4px;
+    display: flex;
+    flex-direction: row;
+    .reply-content{
+      flex: 10;
+    }
+  }
+}
+
+.small {
+  font-size: 10px;
+}
+
+.delete {
+  float: right;
+}
+
+
+.reply-content{
+
+}

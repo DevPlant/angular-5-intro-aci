@@ -1,0 +1,9 @@
+<p>Add Post</p>
+<input [(ngModel)]="newPost">
+<button (click)="addPost()">Save</button>
+<hr>
+
+<div *ngFor="let post of currentPosts">
+  <p>{{post.content}}</p>
+  <div>Written by: {{post.authorName}} @ {{post.creationDate | date:'medium'}}</div>
+</div>

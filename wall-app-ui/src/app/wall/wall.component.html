@@ -1,0 +1,55 @@
+<nav class="navbar navbar-dark bg-primary">
+  <span class="navbar-brand mb-0 h1">Hello {{currentUser.username}}, Welcome to "Wall"</span>
+  <button (click)="logout()" class="btn btn-outline-light">Logout</button>
+</nav>
+
+
+<br>
+<div class="container">
+
+  <div class="form-group">
+    <label for="postArea">Add a new Post:</label>
+    <textarea class="form-control" id="postArea" rows="3" [(ngModel)]="newPostContent"></textarea>
+  </div>
+  <button (click)="addPost()" class="btn btn-primary">Add Post</button>
+  <hr>
+  <br>
+
+  <div *ngFor="let post of posts">
+
+    <div>{{post.content}}</div>
+    <div class="text-muted small">Written by: {{post.authorName}} on {{post.creationDate | date:'medium'}}</div>
+
+    <button (click)="showReplies(post)" *ngIf="!post.repliesShown" class="btn btn-link">Show Replies</button>
+    <button class="btn btn-link delete text-danger" *ngIf="post.authorName === currentUser.username"
+            (click)="deletePost(post)">
+      <i class="fa fa-trash "></i>
+    </button>
+
+    <div *ngIf="post.repliesShown">
+      <button class="btn btn-link" (click)="post.repliesShown = false">Hide Replies</button>
+      <div class="reply-container">
+        <div *ngFor="let reply of post.replies" class="reply">
+            <div class="reply-content">
+              <div>{{reply.content}}</div>
+              <div class="text-muted small">Written by: {{reply.authorName}} on {{reply.creationDate | date:'medium'}}
+              </div>
+            </div>
+            <button class="btn btn-link delete text-danger" *ngIf="reply.authorName === currentUser.username"
+                    (click)="deleteReply(post,reply)">
+              <i class="fa fa-trash "></i>
+            </button>
+        </div>
+
+        <p *ngIf="!post.replies || post.replies.length === 0">No Replies Yet</p>
+        <div class="form-group">
+          <textarea class="form-control" id="replyArea" rows="2" [(ngModel)]="post.newReply"></textarea>
+          <button (click)="addReply(post)" class="btn btn-link">Reply</button>
+        </div>
+
+      </div>
+    </div>
+    <hr>
+
+  </div>
+</div>
